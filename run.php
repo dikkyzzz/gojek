@@ -168,36 +168,3 @@ if ($login == false)
 		}
 	}
 }
-
-$secret = 'a520b86d-c416-40b9-9f9f-f753d9899dd6'; //BEARERTOKENAKUNUTAMA
-$pin = "122130"; //PINGOPAY
-$headers = array();
-$header[] = 'Content-Type: application/json';
-$header[] = 'X-AppVersion: 3.40.0';
-$header[] = "X-Uniqueid: ac94e5d0e7f3f".rand(111,999);
-$header[] = 'X-Location: -6.405821,106.064193';
-$header[] ='Authorization: Bearer '.$secret;
-$header[] = 'pin:'.$pin.'';
-					echo "[+] Process Transfer Rp. 1 \n";
-					$getqrid = curl('https://api.gojekapi.com/wallet/qr-code?phone_number=%2B'.$nope.'', null, $header);
-                    $jsqrid = json_decode($getqrid[0]);
-                    $qrid = $jsqrid->data->qr_id;
-                    
-$tf = curl('https://api.gojekapi.com/v2/fund/transfer', '{"amount":"1","description":"ZAL ","qr_id":"'.$qrid.'"}', $header);
-$jstf = json_decode($tf[0]);
-$tfref = $jstf->data->transaction_ref;
-if ($jstf && true === $jstf->success) {
-    echo "[+] Sukses Transfer Gopay Rp. 1 \n";
-    } else {
-        echo "[+] Gagal Transfer Gopay  \n";
-        }
-}
-    {
-$detail = curl('https://api.gojekapi.com/wallet/profile/detailed', null, $header);
-                    $saldoo = json_decode($detail[0]);
-                    $saldo = $saldoo->data->balance;
-                    echo "[+] Sisa Saldo Gopay = $saldo \n";
-                    echo "\n";
-                    echo "Proses Telah Selesai Happy Mangan Slurrr .. \n";
-    }
-?>
