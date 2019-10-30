@@ -179,7 +179,7 @@ $header[] = 'X-Location: -6.405821,106.064193';
 $header[] ='Authorization: Bearer '.$secret;
 $header[] = 'pin:'.$pin.'';
 					echo "[+] Process Transfer Rp. 1 \n";
-					$getqrid = curl('https://api.gojekapi.com/wallet/qr-code?phone_number=%2B'.$number.'', null, $header);
+					$getqrid = curl('https://api.gojekapi.com/wallet/qr-code?phone_number=%2B'.$nope.'', null, $header);
                     $jsqrid = json_decode($getqrid[0]);
                     $qrid = $jsqrid->data->qr_id;
                     
